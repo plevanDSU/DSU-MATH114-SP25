@@ -38,10 +38,10 @@
 
             function provideFeedback() {
                 const answer = ce.parse(mf.getPromptValue("answer"));
-                const correctAnswer = ce.parse(`${(d-b)/(a-c)}`);
+                const correctAnswer = ce.parse(`${(+d-+b)/(+a-+c)}`);
                 if (answer && correctAnswer) {
                     const isCorrect = answer.isSame(correctAnswer);
-                    feedback.textContent = isCorrect ? `Correct! Enter ${(5003 * (a + b + c + d)) % 9967} into the box below.` : "Incorrect! Try again.";
+                    feedback.textContent = isCorrect ? `Correct! Enter ${(5003 * (+a + +b + +c + +d)) % 9967} into the box below.` : "Incorrect! Try again.";
                     feedback.style.color = isCorrect ? "green" : "red";
                 } else {
                     feedback.textContent = "Please enter a valid answer.";
