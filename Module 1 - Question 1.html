@@ -29,7 +29,7 @@
             questionElement.innerHTML = `<p>Solve the following equation for \\(x\\)</p><span
                 style="display: flex; margin-top: 2rem; margin-bottom: 2rem; align-items: center; justify-content: center;">
                 \\[
-                ${a}x + (${b}) = ${c}x + (${d})
+                `${a}x ${b >= 0 ? '+ ' + b : b} = ${c}x ${d >= 0 ? '+ ' + d : d}`
                 \\]
             </span>`;
             import('https://unpkg.com/mathlive?module').then(mathlive => {
