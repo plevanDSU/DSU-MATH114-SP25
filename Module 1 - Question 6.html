@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Math Problem</title>
+    <script type="module">
+        import { ComputeEngine } from 'https://unpkg.com/@cortex-js/compute-engine?module';
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const ce = new ComputeEngine();
+            const mf = document.getElementById("mf");
+            const submitButton = document.getElementById("submit-button");
+            const feedback = document.getElementById("feedback");
+            const questionElement = document.getElementById("question");
+
+            function getQueryParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    a: +(params.get("a") ?? "-6"),
+                    b: +(params.get("b") ?? "-6"),
+                    c: +(params.get("c") ?? "2"),
+                    d: +(params.get("d") ?? "2"),
+                };
+            }
+
+            const { a, b, c, d } = getQueryParams();
+            questionElement.innerHTML = `<p>Find the equation of the line through the points \\((${a},${b})\\) and \\((${c},${(c-a)*d+b})\\).<br>Write your answer in Slope&ndash;Intercept Form.</p>`;
+            import('https://unpkg.com/mathlive?module').then(mathlive => {
+                mathlive.renderMathInDocument();
+            });
+
+            function provideFeedback() {
+                const answer = ce.parse(mf.getPromptValue("answer"));
+                const correctAnswer = ce.parse(`y=${d}x+${b-a*d}`);
+                if (answer && correctAnswer) {
+                    const isCorrect = answer.isSame(correctAnswer);
+                    feedback.textContent = isCorrect ? `Correct! Enter ${(Math.abs(5003 * (100 + a * b * c * d))) % 9967} into the answer box below.` : `Incorrect! Try again.`;
+                    feedback.style.color = isCorrect ? "green" : "red";
+                } else {
+                    feedback.textContent = "Please enter a valid answer.";
+                    feedback.style.color = "orange";
+                }
+            }
+
+            submitButton.addEventListener("click", provideFeedback);
+
+        });
+    </script>
+    <script type="module" defer>
+        import { renderMathInDocument } from 'https://unpkg.com/mathlive?module';
+        window.addEventListener('DOMContentLoaded', () => renderMathInDocument());
+    </script>
+    <script type="module" src="https://unpkg.com/mathlive/dist/mathlive.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+
+        .math-field-container {
+            margin-bottom: 1rem;
+        }
+
+        #feedback {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        math-field {
+            font-size: 1.5rem;
+            display: block;
+            text-align: center;
+        }
+
+        math-field::part(virtual-keyboard-toggle) {
+            display: none;
+        }
+
+        math-field::part(menu-toggle) {
+            display: none;
+        }
+
+        math-field::part(prompt) {
+            border: 1px solid rgba(128, 128, 128, 0.75);
+            border-radius: 0.25rem;
+            padding: 0.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #submit-button {
+            background-color: #0056a8;
+            color: white;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        #submit-button:hover {
+            background-color: #004488;
+        }
+
+        #submit-button:active {
+            background-color: #003366;
+        }
+
+        .button-container {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="question">
+        
+    </div>
+    <div class="math-field-container">
+        <math-field readonly id="mf">
+            \placeholder[answer]{\,}
+        </math-field>
+    </div>
+    <div class="button-container">
+        <button id="submit-button"><b>Submit</b></button>
+    </div>
+    <div id="feedback"></div>
+</body>
+
+</html>
