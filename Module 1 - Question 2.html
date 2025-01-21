@@ -27,7 +27,7 @@
             }
 
             const { a, b, c, d, e } = getQueryParams();
-            questionElement.innerHTML = `<p>Solve the following equation for \\(x\\)</p><span
+            questionElement.innerHTML = `<p>Solve the following equation for \\(x\\). Make sure to simplify completely and leave as a fraction.</p><span
                 style="display: flex; margin-top: 2rem; margin-bottom: 2rem; align-items: center; justify-content: center;">
                 \\[
                 ${a}(x ${d >= 0 ? '+ ' + d : d}) ${b >= 0 ? '+ ' + b : b} = ${c}(x ${e >= 0 ? '+ ' + e : e})
