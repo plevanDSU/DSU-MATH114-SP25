@@ -26,7 +26,7 @@
             }
 
             const { a, b, c, d } = getQueryParams();
-            questionElement.innerHTML = `<p>Find the equation of the line containing the point \\((${a},${b})\\) with slope \\(-\\dfrac{${c}}{${d}}\\). Write the answer in Slope&ndash;Intercept Form.</p>`;
+            questionElement.innerHTML = `<p>Find the equation of the line containing the point \\((${a},${b})\\) and with slope \\(-\\dfrac{${c}}{${d}}\\).<br>Write your answer in Slope&ndash;Intercept Form.</p>`;
             import('https://unpkg.com/mathlive?module').then(mathlive => {
                 mathlive.renderMathInDocument();
             });
