@@ -18,10 +18,10 @@
             function getQueryParams() {
                 const params = new URLSearchParams(window.location.search);
                 return {
-                    a: +params.get("a") || "-3",
-                    b: +params.get("b") || "-9",
-                    c: +params.get("c") || "8",
-                    d: +params.get("d") || "-5",
+                    a: +(params.get("a") ?? "-3"),
+                    b: +(params.get("b") ?? "-9"),
+                    c: +(params.get("c") ?? "8"),
+                    d: +(params.get("d") ?? "-5"),
                 };
             }
 
