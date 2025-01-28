@@ -31,10 +31,10 @@
             });
 
             function provideFeedback() {
-                const answer = ce.parse(mf.getPromptValue("answer")).json;
-                const correctAnswer = ce.parse(`(-infty,${(c+b)/(a)}]`).json;
+                const answer = ce.parse(mf.getPromptValue("answer"));
+                const correctAnswer = ce.parse(`(-infty,${(c+b)/(a)}]`);
                 if (answer && correctAnswer) {
-                    const isCorrect = answer.isSame(correctAnswer);
+                    const isCorrect = answer.isEqual(correctAnswer);
                     feedback.textContent = isCorrect ? `Correct! Enter ${(Math.abs(5003 * (100 + a * b * c))) % 9967} into the answer box below.` : `Incorrect! Try again. ${answer}, ${correctAnswer}`;
                     feedback.style.color = isCorrect ? "green" : "red";
                 } else {
