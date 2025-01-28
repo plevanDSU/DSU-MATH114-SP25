@@ -35,7 +35,7 @@
                 const correctAnswer = ce.parse(`(-infty,${(c+b)/(a)}]`);
                 if (answer && correctAnswer) {
                     const isCorrect = answer.isSame(correctAnswer);
-                    feedback.textContent = isCorrect ? `Correct! Enter ${(Math.abs(5003 * (100 + a * b * c))) % 9967} into the answer box below.` : `Incorrect! Try again.`;
+                    feedback.textContent = isCorrect ? `Correct! Enter ${(Math.abs(5003 * (100 + a * b * c))) % 9967} into the answer box below.` : `Incorrect! Try again. ${answer}, ${correctAnswer}`;
                     feedback.style.color = isCorrect ? "green" : "red";
                 } else {
                     feedback.textContent = "Please enter a valid answer.";
