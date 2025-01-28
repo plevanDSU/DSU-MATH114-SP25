@@ -25,7 +25,7 @@
             }
 
             const { a, b, c } = getQueryParams();
-            questionElement.innerHTML = `<p>Solve the inequality \\(|${a}x-${b}| &gt; ${c}\\) for \\(x\\).<br>Fully simplify, and write your answer in Interval Notation. If you need to use \\(\\infty\\), you can type "\\infty" and click [enter]. If you need more than one interval, you can write the <b>Union</b> symbol \\(\\cup\\) by writing "\\cup" and hitting [enter].</p>`;
+            questionElement.innerHTML = `<p>Solve the inequality \\(|${a}x-${b}| &gt; ${c}\\) for \\(x\\).<br>Fully simplify, and write your answer in Interval Notation. If you need to use \\(\\infty\\), you can type <b>\\infty</b> and click [enter].<br>If you need more than one interval, you can write the <b>Union</b> symbol \\(\\cup\\) by writing <b>\\cup</b> and hitting [enter].</p>`;
             import('https://unpkg.com/mathlive?module').then(mathlive => {
                 mathlive.renderMathInDocument();
             });
@@ -35,7 +35,7 @@
                 const correctAnswer = ce.parse(`(-\\infty,${(-c+b)/a})\\cup(${(c+b)/a},\\infty)`);
                 if (answer && correctAnswer) {
                     const isCorrect = answer.isEqual(correctAnswer);
-                    feedback.textContent = isCorrect ? `Correct! Enter ${(Math.abs(5003 * (100 + a * b ))) % 9967} into the answer box below.` : `Incorrect! Try again.`;
+                    feedback.textContent = isCorrect ? `Correct! Enter ${(Math.abs(5003 * (100 + a * b * c ))) % 9967} into the answer box below.` : `Incorrect! Try again.`;
                     feedback.style.color = isCorrect ? "green" : "red";
                 } else {
                     feedback.textContent = "Please enter a valid answer.";
