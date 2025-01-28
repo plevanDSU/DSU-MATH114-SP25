@@ -25,14 +25,14 @@
             }
 
             const { a, b, c } = getQueryParams();
-            questionElement.innerHTML = `<p>Solve the inequality \\({a}x-{b} \\leq c\\) for \\(x\\).<br>Write your answer in Interval Notation. If you need to use \\(\\infty\\), you can type "infty" all lowercase.</p>`;
+            questionElement.innerHTML = `<p>Solve the inequality \\(${a}x-${b} \\leq ${c}\\) for \\(x\\).<br>Write your answer in Interval Notation. If you need to use \\(\\infty\\), you can type "infty" all lowercase.</p>`;
             import('https://unpkg.com/mathlive?module').then(mathlive => {
                 mathlive.renderMathInDocument();
             });
 
             function provideFeedback() {
                 const answer = ce.parse(mf.getPromptValue("answer"));
-                const correctAnswer = ce.parse(`(-infty,{(a+b)/(c)}]`);
+                const correctAnswer = ce.parse(`(-infty,${(a+b)/(c)}]`);
                 if (answer && correctAnswer) {
                     const isCorrect = answer.isSame(correctAnswer);
                     feedback.textContent = isCorrect ? `Correct! Enter ${(Math.abs(5003 * (100 + a * b * c))) % 9967} into the answer box below.` : `Incorrect! Try again.`;
