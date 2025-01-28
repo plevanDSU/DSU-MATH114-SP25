@@ -26,7 +26,7 @@
             }
 
             const { a, b, c, d } = getQueryParams();
-            questionElement.innerHTML = `<p>Solve the inequality \\(${a}x+${b} &gt; ${c}x-${d}\\) for \\(x\\).<br>Write your answer in Interval Notation. If you need to use \\(\\infty\\), you can type "infty" all lowercase.</p>`;
+            questionElement.innerHTML = `<p>Solve the inequality \\(${a}x+${b} &gt; ${c}x-${d}\\) for \\(x\\).<br>Fully simplify, and write your answer in Interval Notation. If you need to use \\(\\infty\\), you can type "infty" all lowercase.</p>`;
             import('https://unpkg.com/mathlive?module').then(mathlive => {
                 mathlive.renderMathInDocument();
             });
