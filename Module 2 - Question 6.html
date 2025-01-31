@@ -33,7 +33,7 @@
 
             function provideFeedback() {
                 const answer = ce.parse(mf.getPromptValue("answer"));
-                const correctAnswer = ce.parse(`(${(a-c)/b},${(d-c)/b})`);
+                const correctAnswer = ce.parse(`(${a-c}/${b},${d-c}/${b})`);
                 if (answer && correctAnswer) {
                     const isCorrect = answer.isEqual(correctAnswer);
                     feedback.textContent = isCorrect ? `Correct! Enter ${(Math.abs(5003 * (100 + a * b * c * d ))) % 9967} into the answer box below.` : `Incorrect! Try again.`;
